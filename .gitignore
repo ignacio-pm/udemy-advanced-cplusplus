@@ -1,0 +1,4 @@
+# Ignore executables: Ignore all the files but the directories and the files with an extension.
+*
+!*/
+!*.*
