@@ -3,5 +3,6 @@
 !*/
 !*.*
 
-# Ignore directories with dSYM extensions
+# Ignore directories with dSYM and svn extensions
 *.dSYM/
+.svn/
