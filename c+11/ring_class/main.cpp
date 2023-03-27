@@ -19,10 +19,22 @@ int main() {
   for (ring<string>::iterator it = string_ring.begin(); it != string_ring.end(); it++) {
     cout << *it << endl;
   }
+  cout << "-----" << endl;
 
   // If an iterator loop runs, a range based loop in C++11 runs without extra implementation
   for (string str: new_ring) {
     cout << str << endl;
+  }
+
+  cout << "-----" << endl;
+  
+
+  // Custom initializer list constructor and method
+  ring<double> intRing{1,2,3,4};
+  intRing.add({5, 6});
+
+  for (auto value: intRing) {
+    cout << value << endl;
   }
 
   return 0;

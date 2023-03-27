@@ -2,6 +2,8 @@
 #define RING_H_
 
 #include <memory>
+// Include initializer_list, to create an braced-init-list constructor
+#include <initializer_list>
 
 template <class T>
 class ring {
@@ -22,7 +24,11 @@ public:
 
   // Copy constructor. Copy the values of the ring in a new unique_ptr and maintains the position
   ring(ring &other) : m_size(other.m_size), m_pos(other.m_pos), m_values(new T[other.m_size]) {
-    copy(&other.m_values[0], &other.m_values[0]+other.m_size, &m_values[0]);
+    std::copy(&other.m_values[0], &other.m_values[0]+m_size, &m_values[0]);
+  }
+
+  ring(std::initializer_list<T> values) : m_size(values.size()), m_pos(0), m_values(new T[values.size()]) {
+    std::copy(values.begin(), values.end(), &m_values[0]);
   }
 
   // Returns a ring iterator in the first position of the ring
@@ -40,6 +46,12 @@ public:
     m_values[m_pos++] = value;
     if(m_pos == m_size) {
       m_pos = 0;
+    }
+  }
+  // Saves the input values in the ring by calling the add method for each value in initializer list
+  void add (std::initializer_list<T> values) {
+    for (T value: values) {
+      add(value);
     }
   }
 
