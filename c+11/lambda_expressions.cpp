@@ -85,6 +85,13 @@ int main() {
     cout << number1 << ", " << number2 << ", " << number3 << endl;
   }();
 
+  // Pass all local variables by value but allow the lambda expression to modify them inside
+  // the function and not affect the value outside the function by using the world mutable
+  [=]() mutable {
+    number1 = 99;
+    cout << number1 << ", " << number2 << ", " << number3 << endl;
+  }();
+
   // Pass all local variables by reference
   [&]() {
     number3 = 33; 
