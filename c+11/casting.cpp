@@ -17,7 +17,7 @@ class Square : public Shape {
 int main() {
   // Static cast
   // Simple use: Cast a float into int
-  float pi = 3.1416;
+  const float pi = 3.1416;
   cout << static_cast<int>(pi) << endl;
   // Alternative: 
   // cout << (int)pi << endl;
@@ -28,6 +28,7 @@ int main() {
 
   Shape shape;
   Circle circle;
+  Square square;
 
   // It is possible to automatically cast a child into parent but not vice versa
   Shape *p_shape = &circle;
@@ -43,6 +44,15 @@ int main() {
   } else {
     cout << p_dynamic << endl;
   }
+
+  // Reinterpret_cast checks less condition than static_cast. Therefore, it can be used, for 
+  // example, casting between childs or low-level operations. However, it is not frequently used
+  Square *p_square = reinterpret_cast<Square *>(p_circle);
+
+  // Const_cast can convert a reference or a pointer from const to non-const.
+  float variable_pi = const_cast<float &>(pi);
+  variable_pi++;
+  cout << variable_pi << endl;
 
   return 0;
 }
