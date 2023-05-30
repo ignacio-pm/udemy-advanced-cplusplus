@@ -6,3 +6,6 @@
 # Ignore directories with dSYM and svn extensions
 *.dSYM/
 .svn/
+
+# Ignore temporary run files
+*/tempCodeRunnerFile.cpp
